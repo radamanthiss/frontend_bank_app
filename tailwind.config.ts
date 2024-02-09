@@ -1,0 +1,90 @@
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/helpers/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/layouts/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+      colors: {
+        "dark-blue": "#0A2F5B",
+        "medium-blue": "#3478D7",
+        "pale-blue": "#D5E3F7",
+        "light-blue": "#8EBDFF",
+        "inactive-blue": "#0072CE",
+        "subtitle-blue": "#5E7795",
+        "background-card-blue": "#C8DEFC",
+        "toggle-blue": "#0072CE",
+        "info-blue": "#0072CE",
+        "cian-blue": "#34C3D7",
+
+        // Green
+        "light-green": "#CFFFF1",
+        "main-green": "#5EE8C1",
+        "alert-green": "#72D1B5",
+        "homecenter-green": "#008A00",
+        "dark-green": "#84B140",
+        "green-icon": "#8BB64C",
+
+        // Purple
+        "dark-purple": "#5954D2",
+        "helper-purple": "#5955D1",
+        "balance-purple": "#9747FF",
+
+        // Red
+        "homecenter-red": "#DD0021",
+        "finished-red": "#E85E5E",
+        "button-red-hover": "#AC0111",
+        "alert-red": "#F84B4B",
+        "border-red": "#DE2B22",
+        "reported-red": "#E86F6F",
+        "light-red": "#FF845D",
+        "dark-red": "#ED0022",
+
+        //Gray
+        "dark-gray": "#B3B7B8",
+        "background-gray": "#F6F7F9",
+        "medium-gray": "#F1F6FD",
+        "homecenter-gray": "#7C8089",
+        "gray-text": "#7C8089",
+        "gray-title": "#595959",
+        "gray-ligth": "#A9A9A9",
+        "neutral-gray-cold": "#595959",
+
+        //Yellow
+        yellow: "#FCCD00",
+        "alert-yellow": "#E5BE40",
+
+        //Pink
+        pink: "#ED88A6",
+
+        //Orange
+        "warning-light": "#FCF5CB",
+        "warning-dark": "#866404",
+
+        "text-dark": "#18181A",
+      },
+      boxShadow: {
+        imagesTable: "0px 4px 4px 0px rgba(0, 0, 0, 0.25);",
+        fourPx: "0px 0px 4px 0px rgba(0, 0, 0, 0.25);",
+        sixPx: "0px 0px 6px 0px rgba(0, 0, 0, 0.25);",
+        inputShadow: "0px 2.3px 0px 0px rgba(0, 0, 0, 0.25);",
+        radioShadow: "0px -1px 5px 0px rgba(10, 47, 91, 0.12);",
+        photoShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25);",
+        tableShadow: "0px -1px 5px 0px rgba(10, 47, 91, 0.12);",
+      },
+    },
+  },
+  plugins: [],
+};
+export default config;
