@@ -12,7 +12,7 @@ export const TableHeaders = ({ headers }: TableHeadersProps) => {
             key={item + index}
             className="text-medium-blue text-start font-bold text-[11px]"
           >
-            {'t(item)'}
+            {item}
           </th>
         ))}
       </tr>

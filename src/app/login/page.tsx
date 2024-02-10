@@ -10,22 +10,21 @@ export default function LoginPage() {
   const router = useRouter()
   const { user, setUser } = useContext(UserInfoContext);
   // const [sessionToken, setSessionToken] = useState<string>();
+  const [loading, setLoading] = useState(true); // Add loading state
 
   const handleSubmit = async () => {
     try {
       const data = await login(email, password);
+      const vals = data[0];
+      localStorage.setItem("info", JSON.stringify(vals));
+      setUser(vals.user);
       router.replace('/');
-      localStorage.setItem("info", JSON.stringify(data));
-
-      // setUser(data['user']);
-      
-      // setSessionToken(tok);
-      // Handle login success, e.g., storing the JWT
+      setLoading(false);
     } catch (error: any) {
       console.error('Login failed', error);
     }
   };
-  
+   
   return (
     <section className="bg-gray-50 ">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">

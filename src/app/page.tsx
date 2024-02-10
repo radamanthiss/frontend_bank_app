@@ -2,24 +2,15 @@
 import { UserInfoContext } from "@/context/UserContext";
 import { MainLayout } from "@/layouts";
 import { redirect, useRouter } from "next/navigation";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
+import { TransactionsTable } from "./transactions/components";
 
 export default function Home() {
-  const { user, loading } = useContext(UserInfoContext);
+  const { user } = useContext(UserInfoContext);
   const router = useRouter();
 
   if (!user) {
-    redirect('/login');
-  }
-  // useEffect(() => {
-  //   if (!loading && !user) {
-  //     // If not loading and no user is found, redirect to login
-  //     router.replace('/login');
-  //   }
-  // }, [user, loading, router]);
-
-  if (loading) {
-    return <div>Loading...</div>; // Show a loading indicator while checking
+    return <></>;
   }
   return (
     // <main className="flex flex-col items-center justify-center w-screen h-screen bg-gray-50">
@@ -28,34 +19,55 @@ export default function Home() {
     //   </div>
     // </main>
     <MainLayout
-      title={`${'Bienvenido'}, ${user.name}`}
+      title={`${'Bienvenido'}, ${user!.name}`}
       subtitle={'Banco Amigo'}
     >
       <main className="flex h-full flex-col items-center text-black gap-4 mt-10">
         <div className="flex w-full justify-between">
-          <button className="bg-primary-600 text-white rounded-lg px-4 py-2">
-            Nueva transacción
-          </button>
-
-
-          {/* <div className="flex gap-4">
-            <InputSelectStore
-              optionList={["Cedritos", "Calle 80", "Calle 26"]}
-            />
-            <div className="flex gap-5 justify-end items-center w-full text-medium-blue max-w-[220px]">
-              <DateInputNoForm />
-              <DateInputNoForm />
+          {user.user_type === "admin" ? (
+            <div className="flex w-full justify-between items-center">
+              <button className=" text-dark-blue rounded-lg px-4 py-2 bg-pale-blue" onClick={() => redirect('/accounts')}>
+                Nueva cuenta
+              </button>
+              <button type="button" className=" text-dark-blue rounded-lg px-4 py-2 bg-pale-blue" onClick={() => router.push('/transactions')}>
+                Nueva transacción
+              </button>
+              <button className=" text-dark-blue rounded-lg px-4 py-2 bg-pale-blue" onClick={() => redirect('/transactions')}>
+                Nuevo usuario
+              </button>
             </div>
-          </div> */}
+
+          ) : (
+            <div className="flex w-full justify-between items-center">
+              <button className=" text-dark-blue rounded-lg px-4 py-2 bg-pale-blue" onClick={() => router.push('/transactions')}>
+                Nueva transacción
+              </button>
+              <button className=" text-dark-blue rounded-lg px-4 py-2 bg-pale-blue" onClick={() => redirect('/transactions')}>
+                mis cuentas
+              </button>
+              <button className=" text-dark-blue rounded-lg px-4 py-2 bg-pale-blue" onClick={() => redirect('/transactions')}>
+                mi usuario
+              </button>
+            </div>
+
+          )
+          }
+
         </div>
 
-
-        {/* <div className="flex flex-row w-full items-center justify-between mb-14 mt-10">
-          <h1 className="text-dark-blue text-xl font-bold">{t("last")}</h1>
-          <SearchBar eventSearch={function (value: string): void { }} />
-        </div> */}
         {/* <InventoryTable2 /> */}
+        {user.user_type === "admin" ? (
+          <div className="flex justify-start w-full mt-10">
+            <h1>listado de usuarios</h1>
+          </div>
+        ) : (
+          <div className="flex flex-col justify-start w-full mt-10 gap-10">
+            <h1 className="text-dark-blue">Mis transacciones</h1>
+            <TransactionsTable />
+          </div>
+
+        )}
       </main>
-    </MainLayout>
+    </MainLayout >
   );
 }

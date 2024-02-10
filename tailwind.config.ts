@@ -32,7 +32,6 @@ const config: Config = {
         "light-green": "#CFFFF1",
         "main-green": "#5EE8C1",
         "alert-green": "#72D1B5",
-        "homecenter-green": "#008A00",
         "dark-green": "#84B140",
         "green-icon": "#8BB64C",
 
@@ -42,7 +41,6 @@ const config: Config = {
         "balance-purple": "#9747FF",
 
         // Red
-        "homecenter-red": "#DD0021",
         "finished-red": "#E85E5E",
         "button-red-hover": "#AC0111",
         "alert-red": "#F84B4B",
@@ -55,7 +53,6 @@ const config: Config = {
         "dark-gray": "#B3B7B8",
         "background-gray": "#F6F7F9",
         "medium-gray": "#F1F6FD",
-        "homecenter-gray": "#7C8089",
         "gray-text": "#7C8089",
         "gray-title": "#595959",
         "gray-ligth": "#A9A9A9",

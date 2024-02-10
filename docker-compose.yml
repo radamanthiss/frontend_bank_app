@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bank-app
+    restart: always
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - '80:80'
+    command: npm run dev

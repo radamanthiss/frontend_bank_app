@@ -24,6 +24,9 @@ export const MainLayout = ({
   paddingTop,
 }: MainLayoutProps) => {
   const { user, loading } = useContext(UserInfoContext);
+  if(!user){
+    return <></>
+  }
    // const { data: session ,status} = useSession({ required: true });
   // useEffect(() => {
   //   localStorage.setItem("token", session?.user.accessToken!);
