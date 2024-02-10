@@ -16,7 +16,6 @@ export function TransactionsTable() {
     setIsLoading(true);
     try {
       const data = await transactionListByUser(user!.id);
-      console.log('data', data)
       setTransactions(data.transactions);
       setIsLoading(false);
     } catch (error: any) {

@@ -28,8 +28,6 @@ export default function TransactionDeposit() {
     // fetch all accounts
     try {
       const data = await accountDetailByUser(user!.id);
-      console.log('detailACCOUNT', data.account)
-
       setAccountDetail(data.account);
     } catch (error: any) {
       console.error('Error', error);

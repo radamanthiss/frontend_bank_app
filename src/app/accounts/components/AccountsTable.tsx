@@ -17,7 +17,6 @@ export function AccountsTable() {
     setIsLoading(true);
     try {
       const data = await accountListByUser(user!.id);
-      console.log('data', data)
       setAccounts(data.accounts);
       setIsLoading(false);
     } catch (error: any) {

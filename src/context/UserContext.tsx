@@ -26,7 +26,6 @@ export function UserInfoProvider({ children }: { children: React.ReactNode }) {
     const path_name = window.location.pathname;
     if (storedUser) {
       setUser(storedUser.user)
-      console.log('storedUser', storedUser.access_token)
       setSessionToken(storedUser.access_token)
       setLoading(false)
       router.replace(path_name);

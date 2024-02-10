@@ -6,8 +6,6 @@ export async function processDeposit(amount: number, description: string, accoun
     'Content-Type': 'application/json',
   };
 
-  console.log('headers', headers)
-
   const response = await fetch(`${BACKEND_URL}/transactions/deposit`, {
     method: 'POST',
     headers: headers,
