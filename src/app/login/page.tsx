@@ -9,7 +9,6 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const router = useRouter()
   const { user, setUser } = useContext(UserInfoContext);
-  // const [sessionToken, setSessionToken] = useState<string>();
   const [loading, setLoading] = useState(true); // Add loading state
 
   const handleSubmit = async () => {
