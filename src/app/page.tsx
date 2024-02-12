@@ -4,6 +4,7 @@ import { MainLayout } from "@/layouts";
 import { redirect, useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { TransactionsTable } from "./transactions/components";
+import { UsersTable } from "./users/components";
 
 export default function Home() {
   const { user } = useContext(UserInfoContext);
@@ -57,8 +58,9 @@ export default function Home() {
 
         {/* <InventoryTable2 /> */}
         {user.user_type === "admin" ? (
-          <div className="flex justify-start w-full mt-10">
-            <h1>listado de usuarios</h1>
+          <div className="flex flex-col justify-start w-full mt-10 gap-10">
+            <h1 className="text-dark-blue">listado de usuarios</h1>
+            <UsersTable />
           </div>
         ) : (
           <div className="flex flex-col justify-start w-full mt-10 gap-10">

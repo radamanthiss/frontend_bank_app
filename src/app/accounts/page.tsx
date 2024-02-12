@@ -12,8 +12,8 @@ export default function Accounts() {
       <main className="flex h-full flex-col items-center text-black gap-4 mt-10">
         <div className="flex w-full justify-between">
           {user?.user_type === 'admin' ? (
-            <div className="flex w-full justify-between items-center">
-              <h1 className="text-blue-400">Nueva cuenta</h1> 
+            <div className="flex flex-col w-full justify-startr">
+              <h1 className="text-dark-blue">Nueva cuenta</h1> 
             </div>
           ) : (
             <div className="flex flex-col w-full justify-start gap-10 ">

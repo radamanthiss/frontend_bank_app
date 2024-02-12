@@ -57,7 +57,7 @@ export default function TransactionDeposit() {
               <input type="text" placeholder="description" name='description' className="rounded-lg px-4 py-2 bg-pale-blue" />
 
               <div className='flex w-full justify-end'>
-                <div >
+                <div>
                   <button type="button" className="rounded-lg px-4 py-2 bg-dark-purple text-white"
                     onClick={() => {
                       makeTransfer()

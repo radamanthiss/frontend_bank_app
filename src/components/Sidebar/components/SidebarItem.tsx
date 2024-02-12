@@ -1,9 +1,10 @@
 "use client";
 
-import { ReactElement, useMemo } from "react";
+import { ReactElement, useContext, useMemo } from "react";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { UserInfoContext } from "@/context/UserContext";
 
 interface Props {
   path: string;
@@ -16,6 +17,7 @@ export const SidebarItem: React.FC<Props> = ({
   path,
   icon,
 }: Props): ReactElement => {
+  const { user } = useContext(UserInfoContext);
   const pathName = usePathname() ?? "";
   const isActiveItem = useMemo(
     () =>
@@ -31,7 +33,7 @@ export const SidebarItem: React.FC<Props> = ({
     <Link
       className={`flex justify-center h-[49px] rounded-lg bg-transparent pl-5 ${
         isActiveItem(path)
-          ? "border-b-[0.5px] border-medium-blue shadow-fourPx"
+          ? `${user?.user_type=='client' &&'border-b-[0.5px] border-medium-blue shadow-fourPx' }`
           : ""
       }`}
       href={path}

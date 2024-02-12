@@ -122,7 +122,7 @@ export default function FormAccountDetail() {
           <div>
             <button
               type='button'
-              className='rounded-lg px-4 py-2 bg-dark-purple text-white'
+              className='py-4 px-14 bg-dark-blue rounded-2xl text-md font-bold text-white'
               onClick={ toggleEdit}
             >
               {isEditing ? 'Guardar' : 'Editar'}

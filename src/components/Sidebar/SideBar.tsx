@@ -4,11 +4,12 @@ import { ArrowLeftOnRectangleIcon } from "../../../node_modules/@heroicons/react
 import Image from "next/image";
 import React from "react";
 import { SidebarItem } from "./components/SidebarItem";
-import { sideBarData } from "./SideBarData";
 // import { signOut } from "next-auth/react";
 import next from "../../../public/next.svg";
-
+import { SideBarData } from "./SideBarData";
 export const SideBar = () => {
+
+  const siderBarData = SideBarData();
   return (
     <div
       className={`bg-white rounded-2xl my-6 ml-4 flex-col justify-between items-center 
@@ -26,7 +27,7 @@ export const SideBar = () => {
         />
       </section>
       <section className="flex flex-col gap-4 w-full h-[50vh] max-h-96">
-        {sideBarData.map((item, index) => (
+        {siderBarData.map((item, index) => (
           <SidebarItem
             key={index}
             title={item.title}
