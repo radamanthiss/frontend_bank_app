@@ -16,7 +16,6 @@ export function UsersTable() {
     setIsLoading(true);
     try {
       const data = await UsersList();
-      console.log(data);
       setUsersList(data.users);
       setIsLoading(false);
     } catch (error: any) {
