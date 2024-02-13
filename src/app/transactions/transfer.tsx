@@ -24,8 +24,13 @@ export default function TransactionDeposit() {
     try {
       const { amount, description, sender_account_id, recipient_account_id } = formData.current
       const new_recipient_account_id = await accountDetailByAccountNumber(parseInt(recipient_account_id.value))
-      const response = await processTransfer(parseInt(amount.value), description.value, sender_account_id.value, new_recipient_account_id.account.id);
-      alert(response.message)
+      if (new_recipient_account_id) {
+        const response = await processTransfer(parseInt(amount.value), description.value, sender_account_id.value, new_recipient_account_id.account.id);
+        alert(response.message)
+      }
+      else{
+        alert('La cuenta de destino no existe')
+      }
       formData.current.reset()
     } catch (error: any) {
       alert(error.message)

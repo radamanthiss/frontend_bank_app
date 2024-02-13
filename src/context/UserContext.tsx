@@ -25,10 +25,11 @@ export function UserInfoProvider({ children }: { children: React.ReactNode }) {
     const storedUser = JSON.parse(localStorage.getItem('info') as string)
     const path_name = window.location.pathname;
     if (storedUser) {
+      console.log('storedUser', storedUser)
       setUser(storedUser.user)
       setSessionToken(storedUser.access_token)
-      setLoading(false)
       router.replace(path_name);
+      setLoading(false)
     }
     else {
       setLoading(false)

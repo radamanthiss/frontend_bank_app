@@ -1,7 +1,7 @@
 export const headers: string[] = [
-  "Tipo de transacción",
-  "Monto",
-  "ID de cuenta",
-  "ID de usuario",
-  "Fecha de creación",
+  "Tipo de cuenta",
+  "Numero de cuenta",
+  "Saldo",
+  "Status",
+  "Fecha de apertura",
 ];

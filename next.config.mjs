@@ -2,11 +2,8 @@
 const nextConfig = {
   images: {
     domains: [
-      "images.sodimac.com",
       "fakestoreapi.com",
-      "s3.us-west-2.amazonaws.com",
       "cdn-icons-png.flaticon.com",
-      "homecenterco.scene7.com"
     ],
   },
   env: {

@@ -3,6 +3,7 @@ import { UserInfoContext } from '@/context/UserContext';
 import { MainLayout } from '@/layouts'
 import React, { useContext } from 'react'
 import { AccountsTable } from './components';
+import NewAccount from './components/NewAccount';
 
 export default function Accounts() {
   const { user } = useContext(UserInfoContext);
@@ -14,6 +15,7 @@ export default function Accounts() {
           {user?.user_type === 'admin' ? (
             <div className="flex flex-col w-full justify-startr">
               <h1 className="text-dark-blue">Nueva cuenta</h1> 
+              <NewAccount />
             </div>
           ) : (
             <div className="flex flex-col w-full justify-start gap-10 ">

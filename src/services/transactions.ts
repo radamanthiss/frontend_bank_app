@@ -1,6 +1,7 @@
 import { BACKEND_URL } from "@/helpers/config";
 
 export async function processDeposit(amount: number, description: string, account_id: number, token: string) {
+  console.log('tokeeen', token)
   const headers = {
     Authorization: `Bearer ${token}`,
     'Content-Type': 'application/json',
@@ -11,9 +12,6 @@ export async function processDeposit(amount: number, description: string, accoun
     headers: headers,
     body: JSON.stringify({ amount, description, account_id }),
   });
-  if (!response.ok) {
-    throw new Error('Error to process deposit');
-  }
   return response.json();
 }
 

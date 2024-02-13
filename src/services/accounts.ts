@@ -33,10 +33,6 @@ export async function accountDetailByUser(user_id: number) {
   return response.json();
 }
 
-export async function createAccount() {
-
-}
-
 export async function updateAccount(account_id: string, data: any) {
   const response = await fetch(`${BACKEND_URL}/accounts/${account_id}`, {
     method: 'PUT',
@@ -49,14 +45,11 @@ export async function updateAccount(account_id: string, data: any) {
   return response.json();
 }
 
-export async function deleteAccount(account_id: number) {
+export async function deleteAccount(account_id: string) {
   const response = await fetch(`${BACKEND_URL}/accounts/${account_id}`, {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' },
   });
-  if (!response.ok) {
-    throw new Error('Error to delete account');
-  }
   return response.json();
 }
 
@@ -77,7 +70,20 @@ export async function accountDetailByAccountNumber(account_number: number) {
     headers: { 'Content-Type': 'application/json' },
   });
   if (!response.ok) {
-    throw new Error('Error to get account detail');
+    throw new Error('Account not found or error to get account detail');
   }
   return response.json();
+}
+
+export async function createAccount(account_type: string, balance: number, status: string, document_number: number) {
+  const response = await fetch(`${BACKEND_URL}/accounts`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ account_type, balance, status, document_number })
+  });
+  if (!response.ok) {
+    throw new Error('Error to create account');
+  }
+  return response.json();
+
 }

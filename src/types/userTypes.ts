@@ -7,6 +7,7 @@ export interface User {
   user_type: string;
   mobile_number: number;
   country: string;
+  document_number: number
   created_at: string;
   updated_at: string;
 }

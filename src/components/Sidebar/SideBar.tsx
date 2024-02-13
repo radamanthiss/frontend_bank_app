@@ -1,15 +1,19 @@
 "use client";
-
-import { ArrowLeftOnRectangleIcon } from "../../../node_modules/@heroicons/react/24/outline";
 import Image from "next/image";
 import React from "react";
 import { SidebarItem } from "./components/SidebarItem";
-// import { signOut } from "next-auth/react";
 import next from "../../../public/next.svg";
 import { SideBarData } from "./SideBarData";
-export const SideBar = () => {
+import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/outline";
+import { useRouter } from "next/navigation";
 
+export const SideBar = () => {
+  const router = useRouter();
   const siderBarData = SideBarData();
+  const signOut = () => {
+    localStorage.removeItem('info');
+    router.push('/login');
+  };
   return (
     <div
       className={`bg-white rounded-2xl my-6 ml-4 flex-col justify-between items-center 
@@ -43,6 +47,8 @@ export const SideBar = () => {
           width={60}
           height={30}
         />
+        <ArrowLeftStartOnRectangleIcon className="w-6 h-6 text-dark-blue cursor-pointer" onClick={()=> signOut()} />
+
       </section>
     </div>
   );

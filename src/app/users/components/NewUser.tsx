@@ -11,8 +11,8 @@ export default function NewUser() {
 
   const createNewUser = async () => {
     try {
-      const { name, email, password, mobile_number, country, user_type } = formData.current
-      const response = await createUser(name.value, email.value, password.value, parseInt(mobile_number.value, 10), country.value, user_type.value);
+      const { name, email, password, mobile_number, country, user_type, document_number } = formData.current
+      const response = await createUser(name.value, email.value, password.value, parseInt(mobile_number.value, 10), country.value, user_type.value, parseInt(document_number.value, 10));
       alert(response.message)
       formData.current.reset()
 
@@ -49,6 +49,13 @@ export default function NewUser() {
           <div className='flex w-full'>
             <input type="password" placeholder="password" name='password' className="rounded-lg px-4 py-1xw bg-pale-blue justify-end w-full" />
           </div>
+        </div>
+
+        <div className='flex gap-4 items-center  xl:min-w-[100px] w-full'>
+          <label className='flex w-[80px]'>
+            Número Documento
+          </label>
+          <input type="text" placeholder="documento" name='document_number' className="rounded-lg px-4 py-1xw bg-pale-blue justify-end w-full" />
         </div>
 
       </div>

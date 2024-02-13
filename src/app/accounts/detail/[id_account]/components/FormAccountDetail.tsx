@@ -1,8 +1,10 @@
 "use client"
-import { accountDetail, updateAccount } from '@/services/accounts';
+import { accountDetail, deleteAccount, updateAccount } from '@/services/accounts';
 import { Accounts } from '@/types/accountTypes';
+import { TrashIcon } from '@heroicons/react/24/outline';
 import { useParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
+import { set } from 'react-hook-form';
 
 export default function FormAccountDetail() {
   const [isEditing, setIsEditing] = useState(false);
@@ -37,7 +39,7 @@ export default function FormAccountDetail() {
     }
   }
 
-  
+
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -47,89 +49,139 @@ export default function FormAccountDetail() {
     }));
   };
 
-  const toggleEdit = () => {
-    // Only call the update function if transitioning from "Save" to "Edit"
-    if (isEditing) {
-      updateAccountDetails();
-    }
-    setIsEditing(!isEditing);
-  };
-  const  updateAccountDetails = async() =>{
-    setIsEditing(!isEditing)
+  // const toggleEdit = () => {
+  //   // Only call the update function if transitioning from "Save" to "Edit"
+  //   if (isEditing) {
+  //     updateAccountDetails();
+  //   }
+  //   setIsEditing(!isEditing);
+  // };
+  const updateAccountDetails = async () => {
+    // setIsEditing(!isEditing)
     try {
-      if (isEditing) {
-        await updateAccount(id_account as string, formData).then((response) => {
-          alert(response.message)
-          router.push('/accounts')
-        })
-      }
+      await updateAccount(id_account as string, formData).then((response) => {
+        alert(response.message)
+        router.push('/accounts')
+      })
+
     } catch (error) {
       alert('Error to update account')
     }
   }
 
+  const deleteAccountUser = async () => {
+    setIsEditing(!isEditing)
+    try {
+      await deleteAccount(id_account as string).then((response) => {
+        alert(response.message)
+        router.push('/accounts')
+      })
+      // setIsEditing(false)
+    } catch (error) {
+      alert('Error to delete account')
+    }
+
+  }
+
   useEffect(() => {
     getAccountDetail();
-  }, [id_account]);
+  }, []);
 
   if (!account) return <div>Loading...</div>;
   return (
-    <div className='mt-9 text-dark-blue'>
-      <form className='flex w-[600px] flex-col gap-5 items-end justify-between'>
-        <div className='flex gap-4 items-center'>
-          <label>
+    <form className='mt-9 text-dark-blue w-full h-auto grid md:grid-cols-2 gap-3 md:gap-32 text-blue-001 text-sm font-bold'>
+      {/*COL1 */}
+      <div className='flex flex-col gap-4'>
+        <div className='flex gap-4 items-center xl:min-w-[100px] w-full'>
+          <label className='max-w-[90px] w-full'>
             Tipo de cuenta
           </label>
-          <input type="text" placeholder="tipo de cuenta" value={formData.account_type} onChange={handleChange} name='account_type' className="rounded-lg px-4 py-1xw bg-pale-blue justify-end" disabled={!isEditing}/>  
+          <input type="text" placeholder="tipo de cuenta" value={formData.account_type} onChange={handleChange} name='account_type' className="rounded-lg px-4 py-1 bg-pale-blue justify-end w-full" disabled={!isEditing} />
         </div>
 
-        <div className='flex gap-4 items-center'>
-          <label>
-            Número de cuenta
+        <div className='flex gap-4 items-center xl:min-w-[100px] w-full'>
+          <label className='max-w-[90px] w-full'>
+            # de cuenta
           </label>
-          <input type="text" placeholder="número de cuenta" value={formData.account_number} onChange={handleChange} name='account_number' className="rounded-lg px-4 py-1  bg-pale-blue" disabled={!isEditing}/>
+          <input type="text" placeholder="número de cuenta" value={formData.account_number} onChange={handleChange} name='account_number' className="rounded-lg px-4 py-1 bg-pale-blue justify-end w-full" disabled={!isEditing} />
         </div>
 
-        <div className='flex gap-4 items-center'>
-          <label>
+        <div className='flex gap-4 items-center xl:min-w-[100px] w-full'>
+          <label className='max-w-[90px] w-full'>
             Saldo
           </label>
-          <input type="text" placeholder="saldo" name='balance' value={formData.balance} onChange={handleChange} className="rounded-lg px-4 py-1  bg-pale-blue" disabled={!isEditing}/>
+          <input type="text" placeholder="saldo" name='balance' value={formData.balance} onChange={handleChange} className="rounded-lg px-4 py-1 bg-pale-blue justify-end w-full" disabled={!isEditing} />
         </div>
-
-        <div className='flex gap-4 items-center'>
-          <label>
+      </div>
+      {/*COL2 */}
+      <div className='flex flex-col gap-4 mt-2'>
+        <div className='flex gap-4 items-center xl:min-w-[100px] w-full'>
+          <label className='max-w-[90px] w-full'>
             Estado
           </label>
-          <input type="text" placeholder="Estado" name='status' value={formData.status} onChange={handleChange} className="rounded-lg px-4 py-1  bg-pale-blue" disabled={!isEditing}/>
+          <input type="text" placeholder="Estado" name='status' value={formData.status} onChange={handleChange} className="rounded-lg px-4 py-1  bg-pale-blue justify-end w-full" disabled={!isEditing} />
         </div>
 
-        <div className='flex gap-4 items-center'>
-          <label>
+        <div className='flex gap-4 items-center xl:min-w-[100px] w-full'>
+          <label className='max-w-[90px] w-full'>
             ID de usuario
           </label>
-          <input type="text" placeholder="ID de usuario" name='user_id' defaultValue={formData.user_id} className="rounded-lg px-4 py-1  bg-pale-blue" disabled={isEditing}/>
+          <input type="text" placeholder="ID de usuario" name='user_id' defaultValue={formData.user_id} className="rounded-lg px-4 py-1  bg-pale-blue justify-end w-full" disabled={isEditing} />
         </div>
 
-        <div className='flex gap-4 items-center'>
-          <label>
-            Fecha de apertura
+        <div className='flex gap-4 items-center xl:min-w-[100px] w-full'>
+          <label className='max-w-[90px] w-full'>
+            Fecha apertura
           </label>
-          <input type="text" placeholder="Fecha de apertura" name='date_opened' value={formData.date_opened} onChange={handleChange} className="rounded-lg px-4 py-1  bg-pale-blue" disabled={!isEditing}/>
+          <input type="text" placeholder="Fecha de apertura" name='date_opened' value={formData.date_opened} onChange={handleChange} className="rounded-lg px-4 py-1  bg-pale-blue justify-end w-full" disabled={!isEditing} />
         </div>
 
-        <div className='flex w-full justify-end'>
-          <div>
-            <button
-              type='button'
-              className='py-4 px-14 bg-dark-blue rounded-2xl text-md font-bold text-white'
-              onClick={ toggleEdit}
-            >
-              {isEditing ? 'Guardar' : 'Editar'}
-            </button>
-          </div>
+        <div className='flex justify-start mt-4'>
+          {isEditing ? (
+            <div className="flex justify-between w-full">
+              <button
+                type="button"
+                className={`py-4 px-12 bg-dark-blue rounded-xl text-sm font-bold text-white`}
+                onClick={() => {
+                  updateAccountDetails();
+                }}
+              >
+                Guardar
+              </button>
+              {/* DELETE */}
+              <div className="relative">
+                <TrashIcon
+                  width={15}
+                  className="absolute left-6 top-5 text-alert-red"
+                />
+                <button
+                  className={`border-solid border-2 border-alert-red rounded-xl  py-4 px-8 pl-12 text-sm font-bold text-alert-red`}
+                  onClick={() => {
+                    deleteAccountUser();
+                    // setIsEditing(false);
+                  }}
+                >
+                  Eliminar
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className='flex justify-end items-end w-full'>
+
+              <button
+                type="button"
+                className={`py-4 px-14 bg-dark-blue rounded-2xl text-md font-bold text-white`}
+                onClick={() => {
+                  setIsEditing(true);
+                }}
+              >
+                Editar
+              </button>
+
+            </div>
+          )}
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
   )
 }

@@ -27,13 +27,13 @@ export default function Home() {
         <div className="flex w-full justify-between">
           {user.user_type === "admin" ? (
             <div className="flex w-full justify-between items-center">
-              <button className=" text-dark-blue rounded-lg px-4 py-2 bg-pale-blue" onClick={() => redirect('/accounts')}>
+              <button className=" text-dark-blue rounded-lg px-4 py-2 bg-pale-blue" onClick={() => router.push('/accounts')}>
                 Nueva cuenta
               </button>
               <button type="button" className=" text-dark-blue rounded-lg px-4 py-2 bg-pale-blue" onClick={() => router.push('/transactions')}>
                 Nueva transacción
               </button>
-              <button className=" text-dark-blue rounded-lg px-4 py-2 bg-pale-blue" onClick={() => redirect('/transactions')}>
+              <button className=" text-dark-blue rounded-lg px-4 py-2 bg-pale-blue" onClick={() => router.push('/users')}>
                 Nuevo usuario
               </button>
             </div>
@@ -43,10 +43,10 @@ export default function Home() {
               <button className=" text-dark-blue rounded-lg px-4 py-2 bg-pale-blue" onClick={() => router.push('/transactions')}>
                 Nueva transacción
               </button>
-              <button className=" text-dark-blue rounded-lg px-4 py-2 bg-pale-blue" onClick={() => redirect('/transactions')}>
+              <button className=" text-dark-blue rounded-lg px-4 py-2 bg-pale-blue" onClick={() => router.push('/accounts')}>
                 mis cuentas
               </button>
-              <button className=" text-dark-blue rounded-lg px-4 py-2 bg-pale-blue" onClick={() => redirect('/transactions')}>
+              <button className=" text-dark-blue rounded-lg px-4 py-2 bg-pale-blue" onClick={() => router.push('/users')}>
                 mi usuario
               </button>
             </div>

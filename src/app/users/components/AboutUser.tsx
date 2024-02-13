@@ -1,8 +1,10 @@
 "use client"
 import { UserInfoContext } from '@/context/UserContext';
-import { updateUser } from '@/services/users';
+import { deleteUser, updateUser } from '@/services/users';
 import TrashIcon from '@heroicons/react/24/outline/TrashIcon';
+import { useRouter } from 'next/navigation';
 import React, { useContext, useEffect, useState } from 'react'
+import { set } from 'react-hook-form';
 
 export default function AboutUser() {
   const { user } = useContext(UserInfoContext);
@@ -15,7 +17,7 @@ export default function AboutUser() {
     user_type: '',
     created_at: '',
   });
-
+  const router = useRouter();
 
   const vals = async () => {
     setFormData({
@@ -48,13 +50,28 @@ export default function AboutUser() {
   const updateUserInfo = async () => {
     // setIsEditing(!isEditing)
     try {
-      const data = await updateUser(user?.id as unknown as string, formData).then((response) => {
+      await updateUser(user?.id as unknown as string, formData).then((response) => {
         alert(response.message)
+        router.push('/')
         setIsEditing(false)
       })
 
     } catch (error) {
       alert('Error to update user')
+    }
+  }
+
+  const handleDelete = async () => {
+    setIsEditing(!isEditing)
+    try {
+      await deleteUser(user?.id as unknown as string).then((response) => {
+        alert(response.message)
+        router.push('/')
+      })
+
+    } catch (error) {
+      alert('Error to delete user')
+
     }
   }
 
@@ -133,7 +150,7 @@ export default function AboutUser() {
                   />
                   <button
                     className={`border-solid border-2 border-alert-red rounded-xl  py-4 px-8 pl-12 text-sm font-bold text-alert-red`}
-                    onClick={() => { }}
+                    onClick={() => { handleDelete();}}
                   >
                     Eliminar
                   </button>
